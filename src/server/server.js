@@ -321,7 +321,7 @@ async function basicServer(request, response) {
     return;
   }
 
-  if (isMatch("get", "/all")) {
+  if (isMatch("GET", "/all")) {
     await dumpCounters(response);
     return;
   }
