@@ -304,6 +304,26 @@ async function basicServer(request, response) {
   if (isMatch("GET", "/read")) {
     await readCounter(response, options.name);
     return;
+  } 
+  
+  if (isMatch("POST", "/create")) {
+    await createCounter(response, options.name);
+    return;
+  }
+
+  if (isMatch("PUT", "/update")) {
+    await updateCounter(response, options.name);
+    return;
+  }
+
+  if (isMatch("DELETE", "/delete")) {
+    await deleteCounter(response, options.name);
+    return;
+  }
+
+  if (isMatch("get", "/all")) {
+    await dumpCounters(response);
+    return;
   }
 
   // The following code handles static file requests for the client-side code.
@@ -336,6 +356,8 @@ async function basicServer(request, response) {
   // - A response body containing 'Method Not Allowed'
   //
   // Add your solution here:
+  response.writeHead(405, {"Content-Type": "text/plain"});
+  response.end("Method Not Allowed");
 }
 
 http.createServer(basicServer).listen(3260, () => {
