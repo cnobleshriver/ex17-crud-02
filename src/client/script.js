@@ -11,55 +11,49 @@ const URL = "http://localhost:3260"; // URL of our server
 // TASK #4: Write event handler functions for each button
 // Function to handle create counter action
 async function createCounter() {
-    const counterName = document.getElementById("counterName").value;
-    const response = await fetch(`${URL}/create?name=${counter_name}`, { method: "POST"});
+    const response = await fetch(`${URL}/create?name=${counterNameInput.value}`, { method: "POST"});
     const data = await response.text();
-    document.getElementById("counters").innerText = data;
+    counterResponse.innerHTML = data;
 }
 
 // TASK #4: Write event handler functions for each button
 // Function to handle read counter action
 async function readCounter() {
-    const counterName = document.getElementById("counterName").value;
-    const response = await fetch(`${URL}/read?name=${counterName}`, { method: "GET" });
+    const response = await fetch(`${URL}/read?name=${counterNameInput.value}`, { method: "GET" });
     const data = await response.text();
-    document.getElementById("counters").innerText = data;
+    counterResponse.innerHTML = data;
 }
 
 // TASK #4: Write event handler functions for each button
 // Function to handle update counter action
 async function updateCounter() {
-    const counterName = document.getElementById("counterName").value;
-    const response = await fetch(`${URL}/update?name=${counterName}`, { method: "PUT" });
+    const response = await fetch(`${URL}/update?name=${counterNameInput.value}`, { method: "PUT" });
     const data = await response.text();
-    document.getElementById("counters").innerText = data;
+    counterResponse.innerHTML = data;
 }
 
 // TASK #4: Write event handler functions for each button
 // Function to handle delete counter action
 async function deleteCounter() {
-    const coutnerName = document.getElementById("counterName").value;
-    const response = await fetch(`${URL}/delete?name=${counterName}`, { method: "DELETE" });
+    const response = await fetch(`${URL}/delete?name=${counterNameInput.value}`, { method: "DELETE" });
     const data = await response.text();
-    document.getElementById("counters").innerText = data;
+    counterResponse.innerHTML = data;
 }
 
 // TASK #4: Write event handler functions for each button
 // Function to handle view all counters action
 async function viewAll() {
-    const coutnerName = document.getElementById("counterName").value;
-    const response = await fetch(`${URL}/all?name=${counterName}`, { method: "GET" });
+    const response = await fetch(`${URL}/all?name=${counterNameInput.value}`, { method: "GET" });
     const data = await response.text();
-    document.getElementById("counters").innerText = data;
+    counterResponse.innerHTML = data;
 }
 
 // TASK #5: Add event listeners
-document.getElementById('createBtn').addEventListener("click", createCounter);
-document.getElementById('readBtn').addEventListener("click", readCounter);
-document.getElementById('updateBtn').addEventListener("click", updateCounter);
-document.getElementById('deleteBtn').addEventListener("click", deleteCounter);
-document.getElementById('viewAllBtn').addEventListener("click", viewAll);
-
+createBtn.addEventListener("click", createCounter);
+readBtn.addEventListener("click", readCounter);
+updateBtn.addEventListener("click", updateCounter);
+deleteBtn.addEventListener("click", deleteCounter);
+viewAllBtn.addEventListener("click", viewAll);
 
 // Load all counters in DB when page loads
 viewAll();
