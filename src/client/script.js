@@ -54,6 +54,12 @@ async function viewAll() {
 }
 
 // TASK #5: Add event listeners
+document.getElementById('createBtn').addEventListener("click", createCounter);
+document.getElementById('readBtn').addEventListener("click", readCounter);
+document.getElementById('updateBtn').addEventListener("click", updateCounter);
+document.getElementById('deleteBtn').addEventListener("click", deleteCounter);
+document.getElementById('viewAllBtn').addEventListener("click", viewAll);
+
 
 // Load all counters in DB when page loads
 viewAll();
